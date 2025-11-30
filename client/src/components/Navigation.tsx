@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, X, TrendingUp, Calculator } from "lucide-react";
+import { Menu, X, Calculator } from "lucide-react";
 
 const navLinks = [
   { label: "How It Works", href: "#how-it-works" },
@@ -39,20 +39,16 @@ export default function Navigation({ onOpenCalculator }: NavigationProps) {
         <div className="flex items-center justify-between h-16 gap-4">
           <motion.a
             href="#"
-            className="flex items-center gap-3"
+            className="flex items-center"
             data-testid="link-logo"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-lg blur-lg opacity-50" />
-              <div className="relative w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-white" />
-              </div>
-            </div>
-            <div className="hidden sm:block">
-              <span className="font-heading font-bold text-lg text-gradient-gold">Wholesale Shelf Corps</span>
-            </div>
+            <img 
+              src="/logo.png" 
+              alt="Wholesale Shelf" 
+              className="h-12 w-auto"
+            />
           </motion.a>
 
           <div className="hidden lg:flex items-center gap-1">
