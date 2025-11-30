@@ -52,7 +52,8 @@ export default function VideoModalGated({
       if (response.ok) {
         onLeadCaptured?.({ name, email, phone });
         setStep("video");
-        setTimeout(() => setStep("complete"), 6000);
+        // Video plays for realistic duration (15 seconds), then moves to calendly offer
+        setTimeout(() => setStep("complete"), 15000);
       }
     } catch (error) {
       console.error("Error capturing lead:", error);
@@ -143,22 +144,36 @@ export default function VideoModalGated({
                 How to Unlock $150K+ in Business Credit
               </DialogTitle>
             </DialogHeader>
-            <div className="aspect-video bg-gradient-to-br from-primary/20 via-background to-accent/10 flex items-center justify-center relative">
+            <div className="aspect-video bg-gradient-to-br from-primary/20 via-background to-accent/10 flex items-center justify-center relative overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
               <motion.div
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="text-center space-y-4 relative z-10"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="text-center space-y-6 relative z-10 px-8"
               >
-                <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center shadow-lg">
+                <motion.div
+                  animate={{ scale: [1, 1.08, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center shadow-lg"
+                >
                   <Play className="w-12 h-12 text-accent-foreground ml-1" fill="currentColor" />
+                </motion.div>
+                <div>
+                  <p className="text-foreground font-semibold">Video Strategy Session</p>
+                  <p className="text-muted-foreground text-sm mt-2">Learn how to unlock $150K+ in business credit</p>
                 </div>
-                <p className="text-muted-foreground font-medium">Video content playing...</p>
-                <p className="text-xs text-muted-foreground">Next step coming in a moment</p>
+                <motion.div
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-xs text-muted-foreground"
+                >
+                  Playing... Next step arriving automatically
+                </motion.div>
               </motion.div>
             </div>
-            <div className="p-6 text-center">
-              <p className="text-sm text-muted-foreground">Thank you for watching! We'll show booking options next.</p>
+            <div className="p-6 text-center text-sm text-muted-foreground">
+              <p>Video will complete shortly. You'll be presented with booking options next.</p>
             </div>
           </>
         )}

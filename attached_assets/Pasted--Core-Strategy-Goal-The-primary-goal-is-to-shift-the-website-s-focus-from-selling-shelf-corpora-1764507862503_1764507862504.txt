@@ -1,0 +1,57 @@
+
+ Core Strategy & Goal
+The primary goal is to shift the website's focus from selling shelf corporations to selling a complete funding solution. The main Call to Action (CTA) is to schedule a Strategy Call.
+
+   
+
+ Key Website Requirements & Notes
+
+1. Core Messaging & Focus:
+   Primary Value Proposition: Position the offering as a "Full Service Funding Solution" using:
+       Credit Ready Shelf Corporations (for instant business age/credibility).
+       Optional Credit Partners (to increase funding limits and avoid using personal credit).
+       A Corporate Credit Building & Funding Program.
+   Remove Public Inventory: Do not show the shelf corporation inventory publicly. Explain that this secrecy preserves their value.
+   Create Urgency & Exclusivity: The messaging should make visitors feel they are learning about a "secret" or superior strategy for obtaining significant business funding without tax returns or bank statements.
+
+2. Lead Generation & Conversion:
+   Main CTA: "Schedule a Strategy Call" should be the primary and most prominent button/link on the site.
+   Interactive Lead Magnet: Create a "Funding Potential Calculator."
+       Function: Lets users input variables (corp age, credit score, number of combos) to see a projected funding range.
+       Purpose: To generate excitement and capture leads. Users must provide their contact info to see/download their results.
+       Placement: Trigger this as an option when users try to exit the site or watch a video.
+   Pricing Transparency: State clearly that the investment "starts at $5,000" to qualify leads and prevent wasted sales time.
+
+3. Content & Social Proof:
+   Highlight Key Features: Emphasize the "credit ready" features that turn a "piece of paper" into a functional funding vehicle.
+   Update Testimonials: Rely less on old video testimonials. Focus more on showcasing current five star reviews.
+
+   
+
+ Post Strategy Call Automation (To be integrated with Salesforce)
+
+1. Automatic "Appointment Confirmed" Email:
+   This email must automatically include 3 randomly selected shelf corps from the inventory.
+   Content for each corp: Name, State, Age, Funding Capacity. Do NOT show the price.
+   Goal: Generate excitement and ensure they attend the call without being scared off by cost.
+
+2. Dynamic Proposal System:
+   After the strategy call, the sales rep must be able to generate a custom proposal from a Salesforce integrated form.
+   Proposal Features:
+       Shows 3 options (Basic, Mid tier, Premium) with corresponding prices and funding capacities.
+       Can include/add Credit Partner options.
+       Shows discounts, deadlines (e.g., 3 day discount), and deposit options (e.g., 10 20% to hold for 30 days).
+       Lists all "credit ready features" included for free.
+       Outputs both an HTML page link and a PDF.
+   Urgency Automation: When a corp on a proposal is sold, automatically notify other leads who received proposals featuring that corp to create urgency.
+
+   
+
+ In Summary: The 3 Main Deliverables
+
+1.  The Website: A new site focused on the funding solution, featuring the calculator and a clear CTA for a Strategy Call.
+2.  The Proposal System: A dynamic, Salesforce-integrated system for sales reps to create and send custom proposals (HTML & PDF).
+3.  The Confirmation Page & Email: An optimized "Appointment Confirmed" page and automated email that includes the 3 selected corps (without prices).
+
+This summary provides a clear, professional, and actionable overview that can be easily shared with your team and developers.
+
