@@ -20,6 +20,7 @@ import FundingCalculator from "@/components/FundingCalculator";
 import VideoModalGated from "@/components/VideoModalGated";
 import FloatingCTA from "@/components/FloatingCTA";
 import CalendlyEmbed from "@/components/CalendlyEmbed";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 export default function Home() {
   const [calculatorOpen, setCalculatorOpen] = useState(false);
@@ -50,6 +51,24 @@ export default function Home() {
 
   const handleVideoLeadCaptured = (data: { name: string; email: string; phone?: string }) => {
     handleBooking(data);
+  };
+
+  const handleExitIntentLeadCapture = async (email: string) => {
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          source: "exit_intent",
+        }),
+      });
+      if (response.ok) {
+        console.log("Exit intent lead captured");
+      }
+    } catch (error) {
+      console.error("Error capturing exit intent lead:", error);
+    }
   };
 
   const scrollToHowItWorks = () => {
@@ -99,6 +118,11 @@ export default function Home() {
       />
       
       {showCalendly && <CalendlyEmbed onClose={() => setShowCalendly(false)} />}
+      
+      <ExitIntentPopup 
+        onLeadCapture={(email: string) => handleExitIntentLeadCapture(email)}
+        onScheduleCall={() => scrollToBookCall()}
+      />
       
       <FloatingCTA onClick={scrollToBookCall} />
     </div>
