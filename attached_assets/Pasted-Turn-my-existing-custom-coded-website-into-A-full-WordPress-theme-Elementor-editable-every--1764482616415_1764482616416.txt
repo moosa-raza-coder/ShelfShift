@@ -1,0 +1,162 @@
+Turn my existing custom-coded website into:
+
+➡️ A full WordPress theme
+➡️ Elementor editable (every section must be drag & drop)
+➡️ 100% identical to my current design
+➡️ Fully responsive + modern + clean code
+🎯 WHAT YOU MUST GENERATE
+
+I need a full WordPress install-ready theme, including:
+
+Theme Structure
+mytheme/
+  functions.php
+  style.css
+  header.php
+  footer.php
+  index.php
+  home.php
+  page.php
+  single.php
+  archive.php
+  404.php
+  assets/css/
+  assets/js/
+  templates/
+  elementor-widgets/
+
+MUST INCLUDE
+
+Elementor section templates
+
+Elementor widget templates
+
+Custom Elementor blocks for unique features of my design
+
+Global site settings (colors, fonts, spacing, breakpoints)
+
+ACF (Advanced Custom Fields) or Customizer fields
+
+Importable JSON Elementor templates for all pages
+
+Theme .zip export (code only)
+
+🎨 DESIGN REQUIREMENTS
+
+Re-create my design EXACTLY as I built it in Replit:
+
+Pixel perfect
+
+Same animations (converted to Elementor Motion Effects or custom JS)
+
+Same layout structure
+
+Same mobile version
+
+Same typography & spacing
+
+Same sections
+
+Same icons/images
+
+Same menu and footer
+
+If something is too basic → make it look more premium + modern.
+
+⚙️ TECHNICAL REQUIREMENTS
+1. WordPress Compatibility
+
+WordPress 6+
+
+Elementor & Elementor Pro compatible
+
+Gutenberg disabled or ignored
+
+Custom post types if needed
+
+Custom menus
+
+Dynamic fields support
+
+2. Elementor Compatibility
+
+Convert each major section into an Elementor template
+
+Allow editing text, images, buttons, links, spacing
+
+Convert animations (fade-up, parallax, hover effects, scroll animations)
+
+Create reusable global Elementor widgets
+
+3. Scripts & Functionality
+
+Convert all JS logic from my Replit site into:
+
+Elementor custom JS
+
+Theme JS
+
+WordPress-compatible scripts
+
+📦 DELIVERABLES
+
+You must output the following:
+
+✔ Full WordPress theme code
+✔ Elementor JSON templates for:
+
+Home
+
+About
+
+Services
+
+Contact
+
+Header
+
+Footer
+
+Popups / hero sections
+
+Any custom sections
+
+✔ Instructions for:
+
+How to install the theme
+
+How to import Elementor templates
+
+How to edit everything inside Elementor
+
+How to replace images and text
+
+How to customize global colors
+
+🔥 IMPORTANT
+
+If any part of my original website cannot convert 1:1, improve it using:
+
+Better animations
+
+Smoother transitions
+
+Cleaner layout
+
+Better spacing
+
+Modern UI upgrades
+
+Make the WordPress + Elementor version better than the original.
+
+🧩 FINAL OUTPUT FORMAT
+
+Deliver your answer in:
+
+Complete theme code blocks split by files
+
+A downloadable .zip folder structure (code only)
+
+All Elementor JSON templates
+
+Installation guide
