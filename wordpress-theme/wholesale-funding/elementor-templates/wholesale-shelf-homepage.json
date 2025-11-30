@@ -1,0 +1,372 @@
+{
+  "version": "0.0.1",
+  "title": "Wholesale Shelf Homepage",
+  "type": "page",
+  "blocks": [
+    {
+      "id": "hero-section",
+      "settings": {
+        "background_background": "gradient",
+        "background_color": "#1A355E",
+        "background_gradient_angle": 135,
+        "background_gradient_color_a": "#1A355E",
+        "background_gradient_color_b": "#B21E44",
+        "background_gradient_color_a_stop": 0,
+        "background_gradient_color_b_stop": 100,
+        "min_height": 600,
+        "padding": {
+          "unit": "px",
+          "top": 80,
+          "right": 40,
+          "bottom": 80,
+          "left": 40
+        },
+        "text_align": "center"
+      },
+      "elements": [
+        {
+          "id": "hero-badge",
+          "settings": {
+            "text": "✨ Exclusive Funding Strategy",
+            "color": "#B21E44",
+            "font_size": 14,
+            "font_weight": 600,
+            "margin_bottom": 16
+          }
+        },
+        {
+          "id": "hero-title",
+          "settings": {
+            "text": "Get $150,000+ in Business Credit — Without Waiting 2 Years",
+            "color": "#FFFFFF",
+            "font_size": 56,
+            "font_weight": 700,
+            "line_height": 1.2,
+            "margin_bottom": 24
+          }
+        },
+        {
+          "id": "hero-subtitle",
+          "settings": {
+            "text": "Acquire a lender-ready aged corporation and unlock high-limit business funding in days, not years.",
+            "color": "rgba(255,255,255,0.95)",
+            "font_size": 18,
+            "line_height": 1.6,
+            "margin_bottom": 32
+          }
+        },
+        {
+          "id": "hero-benefits",
+          "settings": {
+            "items": [
+              "Instantly skip \"startup\" restrictions",
+              "Qualify for dramatically higher credit limits",
+              "Build business credit separate from personal",
+              "Complete setup in 72 hours"
+            ],
+            "icon": "check",
+            "icon_color": "#FFFFFF",
+            "text_color": "#FFFFFF",
+            "margin_bottom": 40
+          }
+        },
+        {
+          "id": "hero-cta",
+          "settings": {
+            "text": "Book My Strategy Call",
+            "background_color": "#FFFFFF",
+            "color": "#1A355E",
+            "padding": "14px 40px",
+            "font_weight": 600,
+            "border_radius": 8,
+            "margin_bottom": 16
+          }
+        },
+        {
+          "id": "hero-cta-desc",
+          "settings": {
+            "text": "Speak with a business credit specialist & learn about our verified inventory.",
+            "color": "rgba(255,255,255,0.9)",
+            "font_size": 14
+          }
+        }
+      ]
+    },
+    {
+      "id": "video-section",
+      "settings": {
+        "padding": "80px 40px",
+        "background_color": "#FFFFFF",
+        "text_align": "center"
+      },
+      "elements": [
+        {
+          "id": "video-title",
+          "settings": {
+            "text": "Your Aged Corporation Could Unlock $150K+ in Unsecured Funding",
+            "font_size": 40,
+            "font_weight": 700,
+            "color": "#1A355E",
+            "margin_bottom": 48
+          }
+        },
+        {
+          "id": "video-container",
+          "settings": {
+            "height": 400,
+            "background_gradient_angle": 135,
+            "background_gradient_color_a": "#1A355E",
+            "background_gradient_color_b": "#B21E44",
+            "border_radius": 16,
+            "display": "flex",
+            "align_items": "center",
+            "justify_content": "center",
+            "margin_bottom": 48
+          }
+        },
+        {
+          "id": "ready-items",
+          "settings": {
+            "columns": 3,
+            "items": [
+              {"icon": "✓", "text": "2-minute inventory review"},
+              {"icon": "✓", "text": "24-hour expert response"},
+              {"icon": "✓", "text": "3-day full documentation delivery"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "process-section",
+      "settings": {
+        "padding": "80px 40px",
+        "background_gradient_angle": 180,
+        "background_gradient_color_a": "rgba(26,53,94,0.03)",
+        "background_gradient_color_b": "rgba(178,30,68,0.03)"
+      },
+      "elements": [
+        {
+          "id": "process-header",
+          "settings": {
+            "badge": "The Process",
+            "title": "The Proven 3-Step System to Qualify for Real Business Funding",
+            "text_align": "center",
+            "margin_bottom": 48
+          }
+        },
+        {
+          "id": "process-cards",
+          "settings": {
+            "columns": 3,
+            "items": [
+              {
+                "number": "01",
+                "title": "Acquire an Aged Corporation (2–5 Years Old)",
+                "description": "Skip the \"new business\" phase entirely. Start with a corporation that already has age, history, and lender credibility."
+              },
+              {
+                "number": "02",
+                "title": "Build a Powerful Credit Profile",
+                "description": "We guide you through the exact steps: correct structure, proper filing, verified EIN, vendor alignment, and compliance positioning."
+              },
+              {
+                "number": "03",
+                "title": "Secure High-Limit Credit Lines",
+                "description": "Access $10k–$50k business cards, $25k–$75k credit lines, $150k+ combined approvals, and Net 30 vendor accounts."
+              }
+            ],
+            "card_background": "rgba(255,255,255,0.8)",
+            "card_padding": "32px 24px",
+            "card_border_radius": 12,
+            "card_border": "1px solid rgba(26,53,94,0.15)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "benefits-section",
+      "settings": {
+        "padding": "80px 40px",
+        "background_color": "#FFFFFF"
+      },
+      "elements": [
+        {
+          "id": "benefits-header",
+          "settings": {
+            "badge": "Why Choose Us",
+            "title": "Why Entrepreneurs Choose Aged Corporations",
+            "text_align": "center",
+            "margin_bottom": 48
+          }
+        },
+        {
+          "id": "benefits-grid",
+          "settings": {
+            "columns": 4,
+            "items": [
+              {
+                "icon": "💰",
+                "title": "No Capital Required",
+                "description": "The corporation's age does the heavy lifting for you."
+              },
+              {
+                "icon": "🏆",
+                "title": "Instant Credibility",
+                "description": "Present yourself as an established business — from day one."
+              },
+              {
+                "icon": "⚡",
+                "title": "Zero Startup Delays",
+                "description": "Avoid formation delays, paperwork, and slow credit-building."
+              },
+              {
+                "icon": "⏱️",
+                "title": "Minimal Time Investment",
+                "description": "Setup takes hours — approvals arrive in days."
+              }
+            ],
+            "card_gap": 24
+          }
+        }
+      ]
+    },
+    {
+      "id": "testimonials-section",
+      "settings": {
+        "padding": "80px 40px",
+        "background_color": "#FFFFFF"
+      },
+      "elements": [
+        {
+          "id": "testimonials-header",
+          "settings": {
+            "badge": "Success Stories",
+            "title": "What Business Owners Are Saying",
+            "text_align": "center",
+            "margin_bottom": 48
+          }
+        },
+        {
+          "id": "testimonials-grid",
+          "settings": {
+            "columns": 3,
+            "items": [
+              {
+                "quote": "Went from $10k limits to over $150k in approvals within a month.",
+                "name": "Mark R.",
+                "role": "E-Commerce",
+                "rating": 5
+              },
+              {
+                "quote": "Browsed Monday, documents Wednesday, $75k approval Friday.",
+                "name": "Sarah L.",
+                "role": "Consultant",
+                "rating": 5
+              },
+              {
+                "quote": "The fastest path to business credibility I've ever seen.",
+                "name": "Derek P.",
+                "role": "Agency Owner",
+                "rating": 5
+              }
+            ],
+            "card_padding": "32px 24px",
+            "card_background": "rgba(255,255,255,0.9)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "faq-section",
+      "settings": {
+        "padding": "80px 40px",
+        "background_color": "#F5F5F5"
+      },
+      "elements": [
+        {
+          "id": "faq-header",
+          "settings": {
+            "badge": "❓ FAQ",
+            "title": "Frequently Asked Questions",
+            "text_align": "center",
+            "margin_bottom": 48
+          }
+        },
+        {
+          "id": "faq-accordion",
+          "settings": {
+            "max_width": "700px",
+            "items": [
+              {"q": "Is this legal?", "a": "Yes. Aged corporations are fully legal and commonly used for business credit positioning."},
+              {"q": "Do these corporations have credit histories?", "a": "No. They have aged history, not credit activity — making them clean and ready for your credit building journey."},
+              {"q": "Will this hurt my personal credit?", "a": "No. Business credit is built separately from personal credit."},
+              {"q": "How fast can I get approved?", "a": "Most clients see approvals within 30–45 days."},
+              {"q": "How fast do I get my corporation?", "a": "Within 72 hours of completing your strategy call and making your decision."},
+              {"q": "Can I choose the age of the corporation?", "a": "Yes. We have multiple age tiers available (2-5 years) to match your funding goals."},
+              {"q": "What is the investment to get started?", "a": "Our full-service funding solutions start at $5,000. This includes your aged corporation, all documentation, and our complete credit building and funding program."}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "cta-section",
+      "settings": {
+        "background_gradient_angle": 135,
+        "background_gradient_color_a": "#1A355E",
+        "background_gradient_color_b": "#B21E44",
+        "padding": "80px 40px",
+        "text_align": "center",
+        "color": "#FFFFFF"
+      },
+      "elements": [
+        {
+          "id": "cta-title",
+          "settings": {
+            "text": "Ready to Unlock Real Business Funding?",
+            "font_size": 40,
+            "font_weight": 700,
+            "margin_bottom": 32
+          }
+        },
+        {
+          "id": "cta-lines",
+          "settings": {
+            "items": [
+              "Take the fastest path to credibility.",
+              "Take the shortcut that experienced entrepreneurs already know.",
+              "Take advantage while inventory lasts."
+            ],
+            "font_size": 18,
+            "line_height": 1.8,
+            "margin_bottom": 40
+          }
+        },
+        {
+          "id": "cta-button",
+          "settings": {
+            "text": "Schedule My Strategy Call",
+            "background_color": "#FFFFFF",
+            "color": "#1A355E",
+            "padding": "14px 40px",
+            "font_weight": 600,
+            "margin_bottom": 24
+          }
+        },
+        {
+          "id": "cta-notice",
+          "settings": {
+            "text": "Only 4 Premium Aged Corporations Available This Week",
+            "font_size": 14,
+            "color": "rgba(255,255,255,0.8)"
+          }
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "full_width": true,
+    "custom_css": ".elementor-section { margin: 0 !important; padding: 0 !important; } .elementor-container { padding: 0 20px; } .section-badge { display: inline-block; padding: 8px 16px; border-radius: 24px; background: rgba(255,255,255,0.2); border: 1px solid rgba(26,53,94,0.2); font-size: 12px; font-weight: 500; margin-bottom: 16px; }"
+  }
+}
