@@ -111,7 +111,7 @@ export default function ComparisonSection({ onLearnMore }: ComparisonSectionProp
             <div className={`absolute -inset-0.5 bg-gradient-to-br from-primary/40 to-accent/40 rounded-2xl blur transition-opacity duration-300 ${hoveredCard === "right" ? "opacity-60" : "opacity-30"}`} />
             <div className="relative glass-card rounded-2xl p-8 h-full border border-primary/30 glow-border">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center">
                   <CheckCircle className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-gradient-gold">Aged Shelf Corporation</h3>
