@@ -18,7 +18,6 @@ import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import FundingCalculator from "@/components/FundingCalculator";
 import VideoModalGated from "@/components/VideoModalGated";
-import ExitIntentPopup from "@/components/ExitIntentPopup";
 import FloatingCTA from "@/components/FloatingCTA";
 import CalendlyEmbed from "@/components/CalendlyEmbed";
 
@@ -26,7 +25,6 @@ export default function Home() {
   const [calculatorOpen, setCalculatorOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
-  const [userEngaged, setUserEngaged] = useState(false);
 
   const scrollToBookCall = async () => {
     const element = document.getElementById("book-call");
@@ -52,7 +50,6 @@ export default function Home() {
 
   const handleVideoLeadCaptured = (data: { name: string; email: string; phone?: string }) => {
     handleBooking(data);
-    setUserEngaged(true);
   };
 
   const scrollToHowItWorks = () => {
@@ -103,11 +100,6 @@ export default function Home() {
       
       {showCalendly && <CalendlyEmbed onClose={() => setShowCalendly(false)} />}
       
-      <ExitIntentPopup
-        onOpenCalculator={() => setCalculatorOpen(true)}
-        onWatchVideo={() => setVideoOpen(true)}
-        disabled={calculatorOpen || videoOpen || showCalendly || userEngaged}
-      />
       <FloatingCTA onClick={scrollToBookCall} />
     </div>
   );
