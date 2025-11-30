@@ -1,0 +1,63 @@
+/* Custom Styles for Wholesale Shelf */
+.animated-gradient-bg {
+    background: linear-gradient(-45deg, 
+        hsl(0 0% 100%) 0%, 
+        hsl(216 15% 98%) 25%, 
+        hsl(0 0% 99%) 50%, 
+        hsl(216 20% 97%) 75%, 
+        hsl(0 0% 100%) 100%);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+}
+
+.pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px -5px rgba(26, 53, 94, 0.3); }
+    50% { box-shadow: 0 0 40px -5px rgba(26, 53, 94, 0.5), 0 0 60px -10px rgba(178, 30, 68, 0.25); }
+}
+
+.glow-border {
+    position: relative;
+}
+
+.glow-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, #1A355E 0%, #B21E44 50%, #1A355E 100%);
+    opacity: 0.4;
+    animation: glow-rotate 4s linear infinite;
+}
+
+@keyframes glow-rotate {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0.3; }
+}
+
+.float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.float-slow {
+    animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.shimmer {
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
