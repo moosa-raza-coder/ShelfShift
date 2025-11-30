@@ -82,7 +82,7 @@ export default function HeroSection({ onScheduleCall, onWatchVideo }: HeroSectio
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="font-heading text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight tracking-tight"
+              className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight"
               data-testid="text-hero-headline"
             >
               Get{" "}
@@ -151,15 +151,6 @@ export default function HeroSection({ onScheduleCall, onWatchVideo }: HeroSectio
                   Book My Strategy Call
                 </Button>
               </motion.div>
-              
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                onClick={onWatchVideo}
-                className="px-8 py-3 rounded-lg border-2 border-primary/50 text-primary font-semibold hover:bg-primary/10 transition-colors"
-                data-testid="button-watch-video-hero"
-              >
-                Watch Demo Video
-              </motion.button>
             </motion.div>
             
             <motion.p
