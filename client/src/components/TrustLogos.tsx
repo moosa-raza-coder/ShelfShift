@@ -1,20 +1,12 @@
 import { motion } from "framer-motion";
-import { 
-  CreditCard, 
-  Building2, 
-  Landmark, 
-  DollarSign, 
-  TrendingUp,
-  Shield
-} from "lucide-react";
 
 const trustLogos = [
-  { name: "American Express", icon: CreditCard },
-  { name: "Chase", icon: Building2 },
-  { name: "Capital One", icon: Landmark },
-  { name: "Experian", icon: TrendingUp },
-  { name: "Nav", icon: DollarSign },
-  { name: "Dun & Bradstreet", icon: Shield },
+  { name: "American Express", logo: "/logos/amex.png" },
+  { name: "Chase", logo: "/logos/chase.png" },
+  { name: "Capital One", logo: "/logos/capital-one.png" },
+  { name: "Experian", logo: "/logos/experian.png" },
+  { name: "Nav", logo: "/logos/nav.png" },
+  { name: "Dun & Bradstreet", logo: "/logos/dnb.png" },
 ];
 
 export default function TrustLogos() {
@@ -36,23 +28,24 @@ export default function TrustLogos() {
         </motion.p>
         
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-          {trustLogos.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                whileHover={{ scale: 1.1 }}
-                className="cursor-pointer"
-                data-testid={`logo-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
-              >
-                <Icon className="w-12 h-12 md:w-16 md:h-16 text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-300" />
-              </motion.div>
-            );
-          })}
+          {trustLogos.map((item, index) => (
+            <motion.div
+              key={item.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              whileHover={{ scale: 1.1 }}
+              className="cursor-pointer"
+              data-testid={`logo-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
+            >
+              <img 
+                src={item.logo} 
+                alt={item.name}
+                className="h-12 md:h-16 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+              />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
