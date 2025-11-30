@@ -1,9 +1,6 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
+import { ChevronDown, HelpCircle } from "lucide-react";
 
 const faqs = [
   {
@@ -40,32 +37,87 @@ const faqs = [
 ];
 
 export default function FAQ() {
-  return (
-    <section id="faq" className="py-16 md:py-20 lg:py-24" data-testid="faq-section">
-      <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4" data-testid="text-faq-headline">
-            Frequently Asked Questions
-          </h2>
-        </div>
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-        <Accordion type="single" collapsible className="space-y-4" data-testid="accordion-faq">
+  return (
+    <section
+      id="faq"
+      className="relative py-24 md:py-32 overflow-hidden"
+      data-testid="faq-section"
+      ref={ref}
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
+      
+      <div className="relative max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-primary/20 text-sm font-medium text-primary mb-6"
+          >
+            <HelpCircle className="w-4 h-4" />
+            FAQ
+          </motion.span>
+          <h2
+            className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+            data-testid="text-faq-headline"
+          >
+            Frequently Asked <span className="text-gradient-gold">Questions</span>
+          </h2>
+        </motion.div>
+
+        <div className="space-y-4" data-testid="accordion-faq">
           {faqs.map((faq, index) => (
-            <AccordionItem
+            <motion.div
               key={index}
-              value={`item-${index}`}
-              className="border border-border rounded-md px-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3 + index * 0.08 }}
+              className="relative"
               data-testid={`faq-item-${index}`}
             >
-              <AccordionTrigger className="text-left font-semibold py-4 hover:no-underline">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground pb-4">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-accent/20 rounded-xl blur opacity-0 hover:opacity-30 transition-opacity" />
+              <div className="relative glass-card rounded-xl overflow-hidden">
+                <button
+                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                  className="w-full flex items-center justify-between p-5 text-left"
+                >
+                  <span className="font-semibold pr-4">{faq.question}</span>
+                  <motion.div
+                    animate={{ rotate: openIndex === index ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex-shrink-0"
+                  >
+                    <ChevronDown className="w-5 h-5 text-accent" />
+                  </motion.div>
+                </button>
+                <AnimatePresence>
+                  {openIndex === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-5 text-muted-foreground border-t border-border/30 pt-4">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
           ))}
-        </Accordion>
+        </div>
       </div>
     </section>
   );

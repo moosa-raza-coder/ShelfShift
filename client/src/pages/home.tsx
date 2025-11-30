@@ -19,6 +19,7 @@ import Footer from "@/components/Footer";
 import FundingCalculator from "@/components/FundingCalculator";
 import VideoModal from "@/components/VideoModal";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
+import FloatingCTA from "@/components/FloatingCTA";
 
 export default function Home() {
   const [calculatorOpen, setCalculatorOpen] = useState(false);
@@ -39,7 +40,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col" data-testid="page-home">
+    <div className="min-h-screen flex flex-col bg-background" data-testid="page-home">
       <TopBar />
       <Navigation onOpenCalculator={() => setCalculatorOpen(true)} />
       
@@ -76,6 +77,7 @@ export default function Home() {
         onWatchVideo={() => setVideoOpen(true)}
         disabled={calculatorOpen || videoOpen}
       />
+      <FloatingCTA onClick={scrollToBookCall} />
     </div>
   );
 }
