@@ -1,319 +1,263 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
-import { Calculator, DollarSign, TrendingUp, CheckCircle, Sparkles, ArrowRight } from "lucide-react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { X } from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 
-interface FundingCalculatorProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+interface CalculatorModalProps {
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export default function FundingCalculator({ open, onOpenChange }: FundingCalculatorProps) {
-  const [step, setStep] = useState<"calculate" | "capture" | "results">("calculate");
-  const [corpAge, setCorpAge] = useState(3);
-  const [creditScore, setCreditScore] = useState(700);
-  const [combos, setCombos] = useState(2);
-  const [email, setEmail] = useState("");
+export default function FundingCalculator({ isOpen, onClose }: CalculatorModalProps) {
+  const [step, setStep] = useState("initial");
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [corpAge, setCorpAge] = useState("");
+  const [creditScore, setCreditScore] = useState("");
+  const [combos, setCombos] = useState("");
+  const [funding, setFunding] = useState({ min: 0, max: 0 });
 
   const calculateFunding = () => {
-    const baseAmount = 25000;
-    const ageMultiplier = corpAge * 15000;
-    const scoreMultiplier = (creditScore - 600) * 200;
-    const comboMultiplier = combos * 35000;
-    const min = baseAmount + ageMultiplier + scoreMultiplier + comboMultiplier * 0.7;
-    const max = baseAmount + ageMultiplier + scoreMultiplier + comboMultiplier * 1.3;
-    return { min: Math.round(min), max: Math.round(max) };
+    const age = parseInt(corpAge) || 0;
+    const score = parseInt(creditScore) || 650;
+    const comboCount = parseInt(combos) || 0;
+
+    let baseAmount = 250000;
+    if (age > 2) baseAmount += age * 50000;
+    if (score > 700) baseAmount += (score - 700) * 100;
+    baseAmount += comboCount * 100000;
+
+    const min = Math.max(250000, baseAmount - 500000);
+    const max = baseAmount + 500000;
+
+    setFunding({ min, max });
   };
 
-  const funding = calculateFunding();
+  const handleNext = () => {
+    if (corpAge && creditScore && combos) {
+      calculateFunding();
+      setStep("email");
+    }
+  };
 
-  const handleSubmitEmail = (e: React.FormEvent) => {
+  const handleSubmitEmail = async (e: React.FormEvent) => {
     e.preventDefault();
     if (email && name) {
-      console.log("Lead captured:", { email, name, phone, corpAge, creditScore, combos, funding });
-      setStep("results");
+      try {
+        const response = await fetch("/api/leads", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            email,
+            phone: phone || null,
+            corpAge: parseInt(corpAge),
+            creditScore: parseInt(creditScore),
+            combos: parseInt(combos),
+            estimatedMin: funding.min,
+            estimatedMax: funding.max,
+          }),
+        });
+        if (response.ok) {
+          console.log("Lead captured successfully");
+          setStep("results");
+        }
+      } catch (error) {
+        console.error("Error submitting lead:", error);
+      }
     }
   };
 
   const handleReset = () => {
-    setStep("calculate");
-    setEmail("");
+    setStep("initial");
     setName("");
+    setEmail("");
     setPhone("");
+    setCorpAge("");
+    setCreditScore("");
+    setCombos("");
   };
 
-  const handleClose = () => {
-    onOpenChange(false);
-    setTimeout(handleReset, 300);
-  };
+  if (!isOpen) return null;
 
   return (
-    <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="max-w-lg glass-card border-primary/20 glow-border" data-testid="dialog-funding-calculator">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-3 font-heading text-2xl">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <Calculator className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-gradient-gold">Funding Potential Calculator</span>
-          </DialogTitle>
-          <DialogDescription className="text-muted-foreground">
-            {step === "calculate" && "See how much business credit you could unlock with an aged corporation."}
-            {step === "capture" && "Enter your details to see your personalized funding potential."}
-            {step === "results" && "Your estimated funding potential is ready!"}
-          </DialogDescription>
-        </DialogHeader>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        className="relative w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl"
+      >
+        <button
+          onClick={onClose}
+          className="absolute right-4 top-4 text-gray-400 hover:text-gray-600"
+          data-testid="button-close-calculator"
+        >
+          <X size={24} />
+        </button>
 
-        <AnimatePresence mode="wait">
-          {step === "calculate" && (
-            <motion.div
-              key="calculate"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="space-y-6 py-4"
-            >
-              <div className="space-y-6">
-                <div>
-                  <div className="flex justify-between mb-3">
-                    <Label className="text-sm">Corporation Age</Label>
-                    <span className="text-sm font-bold text-accent">{corpAge} years</span>
-                  </div>
-                  <Slider
-                    value={[corpAge]}
-                    onValueChange={(v) => setCorpAge(v[0])}
-                    min={2}
-                    max={5}
-                    step={1}
-                    className="py-2"
-                    data-testid="slider-corp-age"
-                  />
-                  <div className="flex justify-between text-xs text-muted-foreground mt-2">
-                    <span>2 years</span>
-                    <span>5 years</span>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex justify-between mb-3">
-                    <Label className="text-sm">Personal Credit Score</Label>
-                    <span className="text-sm font-bold text-accent">{creditScore}</span>
-                  </div>
-                  <Slider
-                    value={[creditScore]}
-                    onValueChange={(v) => setCreditScore(v[0])}
-                    min={600}
-                    max={850}
-                    step={10}
-                    className="py-2"
-                    data-testid="slider-credit-score"
-                  />
-                  <div className="flex justify-between text-xs text-muted-foreground mt-2">
-                    <span>600</span>
-                    <span>850</span>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex justify-between mb-3">
-                    <Label className="text-sm">Number of Credit Combos</Label>
-                    <span className="text-sm font-bold text-accent">{combos}</span>
-                  </div>
-                  <Slider
-                    value={[combos]}
-                    onValueChange={(v) => setCombos(v[0])}
-                    min={1}
-                    max={5}
-                    step={1}
-                    className="py-2"
-                    data-testid="slider-combos"
-                  />
-                  <div className="flex justify-between text-xs text-muted-foreground mt-2">
-                    <span>1 combo</span>
-                    <span>5 combos</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 to-accent/30 rounded-xl blur" />
-                <div className="relative p-5 rounded-xl glass border border-primary/20">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <TrendingUp className="w-6 h-6 text-accent" />
-                      <span className="font-medium">Estimated Potential</span>
-                    </div>
-                    <div className="text-right">
-                      <div className="font-heading text-2xl font-bold text-gradient-gold">
-                        ${funding.min.toLocaleString()} - ${funding.max.toLocaleString()}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <Button
-                className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
-                size="lg"
-                onClick={() => setStep("capture")}
-                data-testid="button-see-results"
-              >
-                See My Full Results
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </motion.div>
-          )}
-
-          {step === "capture" && (
-            <motion.form
-              key="capture"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              onSubmit={handleSubmitEmail}
-              className="space-y-4 py-4"
-            >
-              <div className="space-y-2">
-                <Label htmlFor="name">Full Name *</Label>
+        {step === "initial" && (
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-gray-900">Funding Calculator</h2>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Corporation Age (Years)
+                </label>
                 <Input
-                  id="name"
+                  type="number"
+                  value={corpAge}
+                  onChange={(e) => setCorpAge(e.target.value)}
+                  placeholder="e.g., 3"
+                  data-testid="input-corp-age"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Credit Score
+                </label>
+                <Input
+                  type="number"
+                  value={creditScore}
+                  onChange={(e) => setCreditScore(e.target.value)}
+                  placeholder="e.g., 750"
+                  data-testid="input-credit-score"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Number of SKUs
+                </label>
+                <Input
+                  type="number"
+                  value={combos}
+                  onChange={(e) => setCombos(e.target.value)}
+                  placeholder="e.g., 50"
+                  data-testid="input-combos"
+                />
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <Button
+                onClick={onClose}
+                variant="outline"
+                className="flex-1"
+                data-testid="button-cancel"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handleNext}
+                className="flex-1 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800"
+                data-testid="button-next"
+              >
+                Calculate
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {step === "email" && (
+          <form onSubmit={handleSubmitEmail} className="space-y-6">
+            <h2 className="text-2xl font-bold text-gray-900">Your Information</h2>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Full Name
+                </label>
+                <Input
                   type="text"
-                  placeholder="John Smith"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  placeholder="John Doe"
                   required
-                  className="bg-muted/50 border-border/50 focus:border-primary"
                   data-testid="input-name"
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">Email Address *</Label>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email
+                </label>
                 <Input
-                  id="email"
                   type="email"
-                  placeholder="you@company.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  placeholder="john@example.com"
                   required
-                  className="bg-muted/50 border-border/50 focus:border-primary"
                   data-testid="input-email"
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number (Optional)</Label>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Phone (Optional)
+                </label>
                 <Input
-                  id="phone"
                   type="tel"
-                  placeholder="(555) 123-4567"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="bg-muted/50 border-border/50 focus:border-primary"
+                  placeholder="+1 (555) 000-0000"
                   data-testid="input-phone"
                 />
               </div>
+            </div>
+            <div className="flex gap-3">
+              <Button
+                type="button"
+                onClick={() => setStep("initial")}
+                variant="outline"
+                className="flex-1"
+                data-testid="button-back"
+              >
+                Back
+              </Button>
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
-                size="lg"
-                data-testid="button-get-results"
+                className="flex-1 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800"
+                data-testid="button-submit"
               >
-                Get My Results
-                <ArrowRight className="w-4 h-4 ml-2" />
+                Get Results
               </Button>
-              <button
-                type="button"
-                className="w-full text-sm text-muted-foreground hover:text-foreground transition-colors"
-                onClick={() => setStep("calculate")}
-              >
-                Back to calculator
-              </button>
-            </motion.form>
-          )}
+            </div>
+          </form>
+        )}
 
-          {step === "results" && (
-            <motion.div
-              key="results"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="space-y-6 py-4"
-            >
-              <div className="relative">
-                <div className="absolute -inset-2 bg-gradient-to-r from-primary/40 to-accent/40 rounded-2xl blur-xl" />
-                <div className="relative p-8 rounded-2xl glass border border-primary/20 text-center">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", delay: 0.2 }}
-                    className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4"
-                  >
-                    <DollarSign className="w-10 h-10 text-white" />
-                  </motion.div>
-                  <p className="text-muted-foreground mb-2">Your Estimated Funding Potential</p>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="font-heading text-4xl font-bold text-gradient-gold mb-3"
-                  >
-                    ${funding.min.toLocaleString()} - ${funding.max.toLocaleString()}
-                  </motion.div>
-                  <p className="text-sm text-muted-foreground">
-                    Based on a {corpAge}-year aged corporation, {creditScore} credit score, and {combos} credit combo(s)
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <p className="font-medium flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-accent" />
-                  Your next steps:
-                </p>
-                <div className="space-y-2">
-                  {[
-                    "We've sent your detailed results to your email",
-                    "A funding specialist will reach out within 24 hours",
-                    "Schedule your strategy call to discuss your options",
-                  ].map((item, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.4 + i * 0.1 }}
-                      className="flex items-center gap-3 text-sm"
-                    >
-                      <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                      <span>{item}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
+        {step === "results" && (
+          <div className="space-y-6 text-center">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Your Estimated Funding</h2>
+              <p className="text-gray-600 mb-4">Based on your information</p>
+            </div>
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6">
+              <p className="text-sm text-gray-600 mb-2">Estimated Range</p>
+              <p className="text-4xl font-bold text-purple-600">
+                ${(funding.min / 1000).toFixed(0)}K - ${(funding.max / 1000).toFixed(0)}K
+              </p>
+            </div>
+            <p className="text-sm text-gray-600">
+              Next steps: Our team will review your information and contact you within 24 hours.
+            </p>
+            <div className="flex gap-3">
               <Button
-                className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
-                size="lg"
-                onClick={handleClose}
-                data-testid="button-schedule-call-calculator"
+                onClick={handleReset}
+                variant="outline"
+                className="flex-1"
+                data-testid="button-recalculate"
               >
-                Schedule My Strategy Call
-                <ArrowRight className="w-4 h-4 ml-2" />
+                Recalculate
               </Button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </DialogContent>
-    </Dialog>
+              <Button
+                onClick={onClose}
+                className="flex-1 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800"
+                data-testid="button-done"
+              >
+                Done
+              </Button>
+            </div>
+          </div>
+        )}
+      </motion.div>
+    </div>
   );
 }
