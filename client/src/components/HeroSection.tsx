@@ -18,6 +18,7 @@ const quickInfoItems = [
 interface HeroSectionProps {
   onScheduleCall?: () => void;
   onWatchVideo?: () => void;
+  onBooking?: (data: { name: string; email: string; phone?: string }) => void;
 }
 
 export default function HeroSection({ onScheduleCall, onWatchVideo }: HeroSectionProps) {

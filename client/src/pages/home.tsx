@@ -25,10 +25,25 @@ export default function Home() {
   const [calculatorOpen, setCalculatorOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
 
-  const scrollToBookCall = () => {
+  const scrollToBookCall = async () => {
     const element = document.getElementById("book-call");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleBooking = async (data: { name: string; email: string; phone?: string }) => {
+    try {
+      const response = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        console.log("Booking created successfully");
+      }
+    } catch (error) {
+      console.error("Error creating booking:", error);
     }
   };
 
@@ -48,6 +63,7 @@ export default function Home() {
         <HeroSection
           onScheduleCall={scrollToBookCall}
           onWatchVideo={() => setVideoOpen(true)}
+          onBooking={handleBooking}
         />
         <TrustLogos />
         <HowItWorks onViewInventory={scrollToBookCall} />
