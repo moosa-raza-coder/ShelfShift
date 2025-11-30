@@ -1,0 +1,146 @@
+/* Elementor Compatibility Styles */
+
+.elementor-section {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.elementor-container {
+    max-width: 1200px !important;
+    padding: 0 20px !important;
+}
+
+.elementor-section.elementor-section-full_width > .elementor-container {
+    max-width: 100% !important;
+}
+
+/* Section Spacing */
+.elementor-section {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+}
+
+.elementor-section.elementor-section-gap-no {
+    gap: 0;
+}
+
+/* Column Spacing */
+.elementor-column {
+    padding: 0 !important;
+}
+
+.elementor-column > .elementor-widget-wrap {
+    padding: 0;
+}
+
+/* Text Styles */
+.elementor-heading-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.elementor-widget-text-editor {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+/* Button Styles */
+.elementor-button {
+    display: inline-block;
+    padding: 12px 32px !important;
+    background: linear-gradient(135deg, #1A355E, #B21E44) !important;
+    color: white !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-family: 'Inter', sans-serif !important;
+    transition: all 0.3s !important;
+}
+
+.elementor-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(178, 30, 68, 0.3) !important;
+}
+
+.elementor-button.btn-light {
+    background: rgba(255,255,255,0.2) !important;
+    border: 2px solid white !important;
+    color: white !important;
+}
+
+/* Card Styles */
+.elementor-widget-container {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 248, 255, 0.6) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(26, 53, 94, 0.15);
+    padding: 2rem;
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+.elementor-widget-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(26, 53, 94, 0.1);
+}
+
+/* Background Gradients */
+.elementor-section-hero {
+    background: linear-gradient(135deg, #1A355E 0%, #B21E44 100%) !important;
+    color: white;
+}
+
+.elementor-section-cta {
+    background: linear-gradient(135deg, #1A355E 0%, #B21E44 100%) !important;
+    color: white;
+}
+
+/* Accordion/FAQ */
+.elementor-accordion-item-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    color: #1A355E;
+}
+
+.elementor-tab-content {
+    color: #6B7280;
+}
+
+/* Icon Styles */
+.elementor-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Image Styles */
+.elementor-image img {
+    border-radius: 12px;
+    transition: transform 0.3s;
+}
+
+.elementor-image:hover img {
+    transform: scale(1.02);
+}
+
+/* Video Container */
+.elementor-video-container {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(26, 53, 94, 0.15);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .elementor-section {
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+    }
+
+    .elementor-heading-title {
+        font-size: 28px !important;
+    }
+
+    .elementor-container {
+        padding: 0 16px !important;
+    }
+}
