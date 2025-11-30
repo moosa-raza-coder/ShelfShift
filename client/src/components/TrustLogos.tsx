@@ -9,6 +9,9 @@ const trustLogos = [
   { name: "Dun & Bradstreet", logo: "/logos/dnb.png" },
 ];
 
+// Duplicate logos for seamless loop
+const duplicatedLogos = [...trustLogos, ...trustLogos];
+
 export default function TrustLogos() {
   return (
     <section className="relative py-12 overflow-hidden" data-testid="trust-logos-section">
@@ -27,25 +30,32 @@ export default function TrustLogos() {
           Trusted by leading financial institutions
         </motion.p>
         
-        <div className="flex justify-center items-center gap-6 md:gap-10 lg:gap-14 overflow-x-auto pb-2">
-          {trustLogos.map((item, index) => (
-            <motion.div
-              key={item.name}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08, duration: 0.4 }}
-              className="flex-shrink-0 cursor-pointer hover-elevate"
-              data-testid={`logo-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
-            >
-              <img 
-                src={item.logo} 
-                alt={item.name}
-                className="h-14 md:h-16 w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
-                title={item.name}
-              />
-            </motion.div>
-          ))}
+        <div className="overflow-hidden">
+          <motion.div
+            className="flex gap-6 md:gap-10 lg:gap-14 items-center"
+            animate={{ x: [0, -50 * trustLogos.length] }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "linear"
+            }}
+          >
+            {duplicatedLogos.map((item, index) => (
+              <motion.div
+                key={`${item.name}-${index}`}
+                className="flex-shrink-0 cursor-pointer hover-elevate"
+                data-testid={`logo-${item.name.toLowerCase().replace(/\s+/g, "-")}-${index}`}
+              >
+                <img 
+                  src={item.logo} 
+                  alt={item.name}
+                  className="h-14 md:h-16 w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+                  title={item.name}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>
