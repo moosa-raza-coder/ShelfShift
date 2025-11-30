@@ -81,9 +81,9 @@ export default function ValueStack() {
                     initial={{ scale: 0 }}
                     animate={isInView ? { scale: 1 } : {}}
                     transition={{ delay: 0.5 + index * 0.08, type: "spring" }}
-                    className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
+                    className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
                   >
-                    <CheckCircle className="w-4 h-4 text-white" />
+                    <CheckCircle className="w-6 h-6 text-white" />
                   </motion.div>
                   <span className="font-medium">{item}</span>
                 </motion.div>
