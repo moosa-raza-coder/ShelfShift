@@ -59,7 +59,7 @@ export default function ExitIntentPopup({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="max-w-md glass-card border-accent/20 glow-border" data-testid="dialog-exit-intent">
+      <DialogContent className="max-w-md glass-card border-accent/20 glow-border fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" data-testid="dialog-exit-intent">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3 font-heading text-2xl">
             <motion.div
