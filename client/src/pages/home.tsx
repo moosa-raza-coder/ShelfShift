@@ -87,7 +87,7 @@ export default function Home() {
       
       <Footer />
 
-      <FundingCalculator open={calculatorOpen} onOpenChange={setCalculatorOpen} />
+      <FundingCalculator isOpen={calculatorOpen} onClose={() => setCalculatorOpen(false)} />
       <VideoModalGated
         open={videoOpen}
         onOpenChange={setVideoOpen}

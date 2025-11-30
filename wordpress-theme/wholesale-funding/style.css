@@ -1,0 +1,85 @@
+/*
+Theme Name: Wholesale Funding
+Theme URI: https://wholesale-funding.local
+Description: Premium B2B funding platform with gated video, lead capture, and Calendly integration
+Version: 1.0.0
+Author: Wholesale Funding
+Author URI: https://wholesale-funding.local
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: wholesale-funding
+Domain Path: /languages
+*/
+
+:root {
+  --primary: #1A355E;
+  --accent: #B21E44;
+  --background: #FFFFFF;
+  --foreground: #1A1A1A;
+  --muted: #F5F5F5;
+  --border: #E0E0E0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--foreground);
+  background: var(--background);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Performance: Use CSS Grid/Flex instead of complex layouts */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 4rem 0;
+  align-items: center;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+}
+
+/* Performance: Lazy load images */
+img {
+  loading: lazy;
+  max-width: 100%;
+  height: auto;
+}
