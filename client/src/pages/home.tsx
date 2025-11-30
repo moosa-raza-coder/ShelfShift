@@ -20,11 +20,13 @@ import FundingCalculator from "@/components/FundingCalculator";
 import VideoModalGated from "@/components/VideoModalGated";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import FloatingCTA from "@/components/FloatingCTA";
+import CalendlyEmbed from "@/components/CalendlyEmbed";
 
 export default function Home() {
   const [calculatorOpen, setCalculatorOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
+  const [userEngaged, setUserEngaged] = useState(false);
 
   const scrollToBookCall = async () => {
     const element = document.getElementById("book-call");
@@ -50,6 +52,7 @@ export default function Home() {
 
   const handleVideoLeadCaptured = (data: { name: string; email: string; phone?: string }) => {
     handleBooking(data);
+    setUserEngaged(true);
   };
 
   const scrollToHowItWorks = () => {
@@ -98,39 +101,12 @@ export default function Home() {
         }}
       />
       
-      {showCalendly && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
-            <div className="p-4 border-b flex justify-between items-center bg-gradient-to-r from-primary/5 to-accent/5">
-              <h3 className="font-heading text-lg text-primary font-semibold">Schedule Your Strategy Call</h3>
-              <button
-                onClick={() => setShowCalendly(false)}
-                className="text-muted-foreground hover:text-foreground text-2xl leading-none"
-                data-testid="button-close-calendly"
-              >
-                ×
-              </button>
-            </div>
-            <div className="p-6 text-center space-y-4">
-              <p className="text-muted-foreground">
-                Connecting to Calendly booking system...
-              </p>
-              <p className="text-sm text-muted-foreground">
-                If you're not redirected, <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent/80 font-semibold">click here to book</a>
-              </p>
-              <div className="bg-primary/5 rounded-lg p-8 text-center">
-                <p className="text-muted-foreground">Calendly integration placeholder</p>
-                <p className="text-xs text-muted-foreground mt-2">Your calendar should appear here</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {showCalendly && <CalendlyEmbed onClose={() => setShowCalendly(false)} />}
       
       <ExitIntentPopup
         onOpenCalculator={() => setCalculatorOpen(true)}
         onWatchVideo={() => setVideoOpen(true)}
-        disabled={calculatorOpen || videoOpen}
+        disabled={calculatorOpen || videoOpen || showCalendly || userEngaged}
       />
       <FloatingCTA onClick={scrollToBookCall} />
     </div>
