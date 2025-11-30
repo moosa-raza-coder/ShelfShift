@@ -136,21 +136,22 @@ export default function HeroSection({ onScheduleCall, onWatchVideo }: HeroSectio
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 pt-8"
             >
-              <motion.div 
-                className="relative group"
-                whileHover={{ scale: 1.05 }}
+              <motion.button
+                whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 400 }}
+                onClick={onScheduleCall}
+                className="relative overflow-hidden text-lg px-10 py-3 h-auto font-bold border-0 rounded-lg bg-primary text-primary-foreground"
+                data-testid="button-schedule-call-hero"
               >
-                <div className="absolute -inset-2 bg-gradient-to-r from-primary via-accent to-primary rounded-xl blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
-                <Button
-                  size="lg"
-                  className="relative text-lg px-10 py-7 h-auto bg-gradient-to-r from-primary to-primary/80 border-0 font-bold shadow-2xl hover:shadow-3xl transition-shadow"
-                  onClick={onScheduleCall}
-                  data-testid="button-schedule-call-hero"
-                >
-                  Book My Strategy Call
-                </Button>
-              </motion.div>
+                {/* Fill-up effect on hover */}
+                <motion.div
+                  initial={{ scaleY: 0, originY: 1 }}
+                  whileHover={{ scaleY: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute inset-0 bg-gradient-to-r from-accent to-primary pointer-events-none"
+                />
+                <span className="relative z-10">Book My Strategy Call</span>
+              </motion.button>
             </motion.div>
             
             <motion.p
