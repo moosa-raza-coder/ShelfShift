@@ -6,38 +6,39 @@ if (!defined('ABSPATH')) exit;
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Premium B2B Funding Solutions - Unlock $150K+ in Business Credit">
-    <meta property="og:title" content="Wholesale Funding Platform">
-    <meta property="og:description" content="Premium B2B Funding Solutions">
-    <meta property="og:type" content="website">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="preload" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap">
     <?php wp_head(); ?>
+    <style>
+        :root {
+            --primary: #1A355E;
+            --accent: #B21E44;
+            --background: #FFFFFF;
+            --foreground: #1A1A1A;
+            --muted: #F5F5F5;
+            --border: #E0E0E0;
+        }
+    </style>
 </head>
 <body <?php body_class(); ?>>
-    <?php wp_body_open(); ?>
-    
-    <header class="site-header">
-        <div class="container">
-            <div class="header-inner">
-                <div class="site-branding">
-                    <h1 class="site-title">
-                        <a href="<?php echo esc_url(home_url('/')); ?>">
-                            <?php bloginfo('name'); ?>
-                        </a>
-                    </h1>
-                </div>
-                
-                <nav class="site-navigation">
-                    <?php wp_nav_menu(array(
-                        'theme_location' => 'primary',
-                        'fallback_cb' => function() {
-                            echo '<ul><li><a href="' . home_url('/') . '">Home</a></li></ul>';
-                        }
-                    )); ?>
-                </nav>
+<?php wp_body_open(); ?>
+
+<header class="site-header sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+    <div class="container mx-auto max-w-7xl px-4">
+        <div class="flex justify-between items-center h-16">
+            <div class="text-2xl font-bold">
+                <a href="<?php echo home_url(); ?>" class="text-gradient-gold">Wholesale Shelf</a>
             </div>
+            <nav class="hidden md:flex gap-8">
+                <a href="#how-it-works" class="text-gray-600 hover:text-blue-600 transition">How It Works</a>
+                <a href="#benefits" class="text-gray-600 hover:text-blue-600 transition">Benefits</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-blue-600 transition">Testimonials</a>
+                <a href="#faq" class="text-gray-600 hover:text-blue-600 transition">FAQ</a>
+            </nav>
+            <button onclick="alert('Schedule call')" class="hidden md:block bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg transition">
+                Schedule Call
+            </button>
         </div>
-    </header>
+    </div>
+</header>
+
+<main class="site-content">
