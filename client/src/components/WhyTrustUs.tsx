@@ -90,19 +90,18 @@ export default function WhyTrustUs() {
             ))}
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 gap-4 pt-8">
+          <div className="grid sm:grid-cols-2 gap-4 pt-8 max-w-2xl mx-auto">
             {trustPoints.map((point, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.6 + index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                className="flex items-center gap-4 p-5 glass-card rounded-xl"
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.6 + index * 0.08 }}
+                className="flex items-center gap-3 p-4 bg-muted/20 rounded-lg border border-border/30"
                 data-testid={`trust-point-${index}`}
               >
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center flex-shrink-0">
-                  <point.icon className="w-5 h-5 text-primary" />
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <point.icon className="w-4 h-4 text-primary" />
                 </div>
                 <span className="font-medium">{point.text}</span>
               </motion.div>

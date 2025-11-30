@@ -14,18 +14,14 @@ const duplicatedLogos = [...trustLogos, ...trustLogos];
 
 export default function TrustLogos() {
   return (
-    <section className="relative py-12 overflow-hidden" data-testid="trust-logos-section">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-      
+    <section className="relative py-16 border-y border-border/30" data-testid="trust-logos-section">
       <div className="relative max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center text-sm font-medium text-foreground mb-8"
+          className="text-center text-sm font-medium text-muted-foreground mb-10"
         >
           Trusted by leading financial institutions
         </motion.p>
