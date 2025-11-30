@@ -23,7 +23,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ onScheduleCall, onWatchVideo }: HeroSectionProps) {
   return (
-    <section className="relative min-h-screen overflow-hidden" data-testid="hero-section">
+    <section className="relative h-[90vh] overflow-hidden" data-testid="hero-section">
       {/* Enhanced Background with Gradient Mesh */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5" />
       
@@ -60,9 +60,9 @@ export default function HeroSection({ onScheduleCall, onWatchVideo }: HeroSectio
         />
       </div>
       
-      <div className="relative max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-20 md:py-28 lg:py-32">
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-3 space-y-8">
+      <div className="relative max-w-7xl mx-auto px-4 md:px-6 lg:px-8 h-full flex items-center">
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center w-full">
+          <div className="lg:col-span-3 space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -101,7 +101,7 @@ export default function HeroSection({ onScheduleCall, onWatchVideo }: HeroSectio
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl text-muted-foreground max-w-2xl leading-relaxed font-light"
+              className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed font-light"
               data-testid="text-hero-subheadline"
             >
               Acquire a lender-ready aged corporation and unlock high-limit business funding in days, not years.
@@ -111,7 +111,7 @@ export default function HeroSection({ onScheduleCall, onWatchVideo }: HeroSectio
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="space-y-4"
+              className="space-y-2"
             >
               {quickBenefits.map((benefit, index) => (
                 <motion.li
@@ -122,10 +122,10 @@ export default function HeroSection({ onScheduleCall, onWatchVideo }: HeroSectio
                   className="flex items-center gap-3"
                   data-testid={`text-benefit-${index}`}
                 >
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
-                    <CheckCircle className="w-4 h-4 text-white" />
+                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
+                    <CheckCircle className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-foreground">{benefit}</span>
+                  <span className="text-foreground text-sm">{benefit}</span>
                 </motion.li>
               ))}
             </motion.ul>
@@ -157,7 +157,7 @@ export default function HeroSection({ onScheduleCall, onWatchVideo }: HeroSectio
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="text-sm text-muted-foreground"
+              className="text-xs text-muted-foreground"
             >
               Speak with a business credit specialist & learn about our verified inventory.
             </motion.p>
@@ -244,7 +244,6 @@ export default function HeroSection({ onScheduleCall, onWatchVideo }: HeroSectio
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 }
