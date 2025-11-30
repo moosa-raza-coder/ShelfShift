@@ -60,15 +60,20 @@ export default function ComparisonSection({ onLearnMore }: ComparisonSectionProp
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, x: -50, rotateY: -10 }}
+            animate={isInView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.6 }}
+            whileHover={{ scale: 1.02, rotateY: -5 }}
+            onHoverStart={() => setHoveredCard("left")}
+            onHoverEnd={() => setHoveredCard(null)}
             className="relative"
+            style={{ perspective: 1000 }}
             data-testid="card-new-llc"
           >
-            <div className="relative bg-muted/30 rounded-xl p-8 h-full border border-border/50">
+            <div className={`absolute -inset-0.5 bg-gradient-to-br from-destructive/30 to-muted rounded-2xl blur transition-opacity duration-300 ${hoveredCard === "left" ? "opacity-50" : "opacity-20"}`} />
+            <div className="relative glass-card rounded-2xl p-8 h-full border border-destructive/20">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-destructive/10 flex items-center justify-center">
                   <XCircle className="w-6 h-6 text-destructive" />
@@ -93,12 +98,18 @@ export default function ComparisonSection({ onLearnMore }: ComparisonSectionProp
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, x: 50, rotateY: 10 }}
+            animate={isInView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
             transition={{ delay: 0.4, duration: 0.6 }}
+            whileHover={{ scale: 1.02, rotateY: 5 }}
+            onHoverStart={() => setHoveredCard("right")}
+            onHoverEnd={() => setHoveredCard(null)}
+            className="relative"
+            style={{ perspective: 1000 }}
             data-testid="card-aged-corp"
           >
-            <div className="relative bg-primary/5 rounded-xl p-8 h-full border border-primary/20">
+            <div className={`absolute -inset-0.5 bg-gradient-to-br from-primary/40 to-accent/40 rounded-2xl blur transition-opacity duration-300 ${hoveredCard === "right" ? "opacity-60" : "opacity-30"}`} />
+            <div className="relative glass-card rounded-2xl p-8 h-full border border-primary/30 glow-border">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
                   <CheckCircle className="w-6 h-6 text-white" />
