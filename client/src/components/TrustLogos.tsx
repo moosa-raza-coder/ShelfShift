@@ -1,12 +1,20 @@
 import { motion } from "framer-motion";
+import { 
+  CreditCard, 
+  Building2, 
+  Landmark, 
+  DollarSign, 
+  TrendingUp,
+  Shield
+} from "lucide-react";
 
 const trustLogos = [
-  "American Express",
-  "Chase",
-  "Capital One",
-  "Experian",
-  "Nav",
-  "Dun & Bradstreet",
+  { name: "American Express", icon: CreditCard },
+  { name: "Chase", icon: Building2 },
+  { name: "Capital One", icon: Landmark },
+  { name: "Experian", icon: TrendingUp },
+  { name: "Nav", icon: DollarSign },
+  { name: "Dun & Bradstreet", icon: Shield },
 ];
 
 export default function TrustLogos() {
@@ -22,26 +30,29 @@ export default function TrustLogos() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center text-sm text-muted-foreground mb-10"
+          className="text-center text-sm text-muted-foreground mb-12"
         >
           Trusted by entrepreneurs approved through institutions like:
         </motion.p>
         
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-          {trustLogos.map((logo, index) => (
-            <motion.div
-              key={logo}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              whileHover={{ scale: 1.05, color: "hsl(var(--accent))" }}
-              className="text-muted-foreground/40 hover:text-accent transition-all duration-300 font-heading font-bold text-lg md:text-xl cursor-default"
-              data-testid={`logo-${logo.toLowerCase().replace(/\s+/g, "-")}`}
-            >
-              {logo}
-            </motion.div>
-          ))}
+          {trustLogos.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                whileHover={{ scale: 1.1 }}
+                className="cursor-pointer"
+                data-testid={`logo-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
+              >
+                <Icon className="w-12 h-12 md:w-16 md:h-16 text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-300" />
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
