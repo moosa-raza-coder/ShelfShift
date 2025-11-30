@@ -52,7 +52,7 @@ export default function HowItWorks({ onViewInventory }: HowItWorksProps) {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-12"
         >
           <motion.span
             initial={{ opacity: 0 }}
@@ -63,7 +63,7 @@ export default function HowItWorks({ onViewInventory }: HowItWorksProps) {
             The Process
           </motion.span>
           <h2
-            className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
+            className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold"
             data-testid="text-hiw-headline"
           >
             The Proven <span className="text-gradient-gold">3-Step System</span> to Qualify for Real Business Funding

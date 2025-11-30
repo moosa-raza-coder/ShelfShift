@@ -46,14 +46,14 @@ export default function WhyThisWorks() {
           </motion.span>
 
           <h2
-            className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold"
+            className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-12"
             data-testid="text-wtw-headline"
           >
             The #1 Reason Startups Get Denied:{" "}
             <span className="text-gradient-gold">"Not Enough Time in Business."</span>
           </h2>
 
-          <div className="max-w-3xl mx-auto space-y-8 text-left">
+          <div className="max-w-3xl mx-auto space-y-6 text-left">
             <motion.p
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}

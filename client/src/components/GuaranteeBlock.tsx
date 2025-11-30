@@ -47,7 +47,7 @@ export default function GuaranteeBlock() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.4 }}
-              className="font-heading text-3xl md:text-4xl font-bold mb-6"
+              className="font-heading text-3xl md:text-4xl font-bold mb-8"
               data-testid="text-guarantee-headline"
             >
               Our <span className="text-gradient-gold">Commitment</span> to You
