@@ -26,8 +26,8 @@ export default function ExitIntentPopup({
 
   const handleMouseLeave = useCallback(
     (e: MouseEvent) => {
-      if (disabled || hasShown) return;
-      if (e.clientY <= 0) {
+      if (disabled) return;
+      if (e.clientY <= 0 && !hasShown) {
         setOpen(true);
         setHasShown(true);
       }
@@ -42,16 +42,23 @@ export default function ExitIntentPopup({
 
   const handleCalculator = () => {
     setOpen(false);
+    setHasShown(false);
     onOpenCalculator();
   };
 
   const handleVideo = () => {
     setOpen(false);
+    setHasShown(false);
     onWatchVideo();
   };
 
+  const handleClose = () => {
+    setOpen(false);
+    setHasShown(false);
+  };
+
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="max-w-md glass-card border-accent/20 glow-border" data-testid="dialog-exit-intent">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3 font-heading text-2xl">
@@ -124,7 +131,7 @@ export default function ExitIntentPopup({
 
           <button
             className="w-full text-sm text-muted-foreground hover:text-foreground transition-colors pt-2"
-            onClick={() => setOpen(false)}
+            onClick={handleClose}
           >
             No thanks, I'll leave
           </button>
