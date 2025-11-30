@@ -170,37 +170,24 @@ export default function HeroSection({ onScheduleCall, onWatchVideo }: HeroSectio
             className="lg:col-span-2 space-y-6"
           >
             <motion.div
-              whileHover={{ scale: 1.03, rotateY: 5 }}
+              whileHover={{ scale: 1.03 }}
               transition={{ type: "spring", stiffness: 300 }}
               className="relative cursor-pointer group"
               onClick={onWatchVideo}
               data-testid="card-vsl"
             >
-              <motion.div 
-                className="absolute -inset-2 bg-gradient-to-r from-primary via-accent to-primary rounded-3xl blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-300"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 4, repeat: Infinity }}
-              />
-              <div className="relative glass-card rounded-3xl overflow-hidden border border-primary/30 bg-gradient-to-br from-primary/10 via-background to-accent/5">
-                <div className="aspect-video bg-gradient-to-br from-primary/30 via-background to-accent/20 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                  
-                  <motion.div
-                    animate={{ opacity: [0.3, 0.6, 0.3] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                    className="absolute inset-0 bg-gradient-to-r from-accent/20 via-transparent to-primary/20"
-                  />
-                  
+              <div className="relative glass-card rounded-3xl overflow-hidden border border-primary/20 bg-background">
+                <div className="aspect-video bg-background flex items-center justify-center relative overflow-hidden">
                   <motion.button
                     whileHover={{ scale: 1.15 }}
                     whileTap={{ scale: 0.9 }}
-                    className="relative z-10 w-24 h-24 bg-gradient-to-br from-accent to-accent/70 rounded-full flex items-center justify-center shadow-2xl hover:shadow-3xl transition-shadow border-2 border-accent/50"
+                    className="relative z-10 w-24 h-24 bg-accent rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
                     data-testid="button-play-video"
                   >
                     <Play className="w-10 h-10 text-white ml-1" fill="white" />
                   </motion.button>
                 </div>
-                <div className="p-8 space-y-4 bg-gradient-to-b from-transparent to-primary/5">
+                <div className="p-8 space-y-4">
                   <p className="font-heading font-bold text-xl leading-tight">
                     Your Aged Corporation Could Unlock <span className="text-gradient-gold">$150K+</span> in Unsecured Funding
                   </p>
