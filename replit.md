@@ -118,5 +118,3 @@ Preferred communication style: Simple, everyday language.
 **Database Tooling**:
 - `drizzle-kit` - Schema management and migrations
 - `drizzle-zod` - Automatic Zod schema generation from Drizzle schemas
-
-**WordPress Theme Export**: A complete WordPress theme exists in `wordpress-theme/wholesale-funding/` that embeds the React application via iframe, allowing the site to run within WordPress while maintaining full React functionality.
