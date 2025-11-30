@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { X, Gift, ArrowRight } from "lucide-react";
 
 interface ExitIntentPopupProps {
-  onLeadCapture?: (email: string) => void;
-  onScheduleCall?: () => void;
+  onLeadCapture?: (email: string) => Promise<void> | void;
+  onScheduleCall?: () => Promise<void> | void;
 }
 
 export default function ExitIntentPopup({ onLeadCapture, onScheduleCall }: ExitIntentPopupProps) {
