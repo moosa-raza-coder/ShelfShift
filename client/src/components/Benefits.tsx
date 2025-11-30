@@ -71,31 +71,24 @@ export default function Benefits({ onCheckInventory }: BenefitsProps) {
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid sm:grid-cols-2 gap-6">
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40, rotateX: -10 }}
-              animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-              transition={{ delay: 0.3 + index * 0.15, duration: 0.6 }}
-              whileHover={{ y: -10, rotateY: 5, rotateX: 5, z: 50 }}
-              style={{ perspective: 1000, transformStyle: "preserve-3d" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3 + index * 0.1, duration: 0.6 }}
               className="relative group"
               data-testid={`card-benefit-${index}`}
             >
-              <div className="absolute -inset-1 bg-gradient-to-br from-primary/40 to-accent/40 rounded-2xl blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
-              <div className="relative glass-card rounded-2xl p-8 h-full">
-                <div className="flex items-start gap-5">
-                  <motion.div
-                    whileHover={{ rotate: [0, -10, 10, -5, 5, 0], scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                    className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center flex-shrink-0 border border-primary/10`}
-                  >
-                    <benefit.icon className="w-8 h-8 text-primary" />
-                  </motion.div>
+              <div className="relative bg-muted/30 rounded-lg p-6 border border-border/50 hover:border-primary/30 transition-colors h-full">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 border border-primary/20">
+                    <benefit.icon className="w-6 h-6 text-primary" />
+                  </div>
                   <div>
-                    <h3 className="font-heading text-xl font-semibold mb-2">{benefit.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>
+                    <h3 className="font-heading text-lg font-semibold mb-1">{benefit.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{benefit.description}</p>
                   </div>
                 </div>
               </div>

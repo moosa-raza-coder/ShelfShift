@@ -61,31 +61,24 @@ export default function ValueStack() {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="relative"
         >
-          <div className="absolute -inset-1 bg-gradient-to-br from-primary/30 via-accent/20 to-primary/30 rounded-3xl blur-xl opacity-30" />
           <div
-            className="relative glass-card rounded-3xl p-8 md:p-12 glow-border"
+            className="relative"
             data-testid="card-value-stack"
           >
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
               {valueItems.map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.4 + index * 0.08 }}
-                  whileHover={{ x: 5, scale: 1.02 }}
-                  className="flex items-center gap-4 p-4 rounded-xl hover:bg-primary/5 transition-colors group"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.4 + index * 0.06 }}
+                  className="flex flex-col items-start gap-2 p-4 bg-muted/30 rounded-lg border border-border/30 hover:border-primary/30 transition-colors group"
                   data-testid={`value-item-${index}`}
                 >
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={isInView ? { scale: 1 } : {}}
-                    transition={{ delay: 0.5 + index * 0.08, type: "spring" }}
-                    className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
-                  >
-                    <CheckCircle className="w-4 h-4 text-white" />
-                  </motion.div>
-                  <span className="font-medium">{item}</span>
+                  <div className="flex items-start gap-2 w-full">
+                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-sm font-medium leading-snug">{item}</span>
+                  </div>
                 </motion.div>
               ))}
             </div>
