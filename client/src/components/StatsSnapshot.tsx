@@ -48,7 +48,7 @@ export default function StatsSnapshot() {
 
   return (
     <section
-      className="relative py-20 md:py-28 overflow-hidden"
+      className="relative py-24 md:py-32 overflow-hidden"
       data-testid="stats-snapshot-section"
       ref={ref}
     >

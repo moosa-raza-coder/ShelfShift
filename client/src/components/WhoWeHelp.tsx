@@ -59,7 +59,7 @@ export default function WhoWeHelp() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <motion.span
             initial={{ opacity: 0 }}
@@ -70,7 +70,7 @@ export default function WhoWeHelp() {
             Perfect For
           </motion.span>
           <h2
-            className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+            className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold"
             data-testid="text-wwh-headline"
           >
             Ideal For:
