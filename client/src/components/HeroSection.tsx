@@ -172,68 +172,30 @@ export default function HeroSection({ onScheduleCall, onWatchVideo }: HeroSectio
           >
             <motion.div
               whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="relative cursor-pointer group"
               onClick={onWatchVideo}
+              className="relative cursor-pointer rounded-2xl overflow-hidden border border-primary/20 bg-background"
               data-testid="card-vsl"
             >
-              {/* Premium border glow on hover */}
-              <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-primary/50 to-accent/50 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              />
+              {/* Video area */}
+              <div className="aspect-video bg-primary/5 flex items-center justify-center relative">
+                <motion.button
+                  whileHover={{ scale: 1.12 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-20 h-20 bg-accent rounded-full flex items-center justify-center"
+                  data-testid="button-play-video"
+                >
+                  <Play className="w-8 h-8 text-white ml-1" fill="white" />
+                </motion.button>
+              </div>
               
-              <div className="relative rounded-3xl overflow-hidden border border-primary/30 bg-gradient-to-br from-primary/15 via-background to-accent/10 backdrop-blur-sm">
-                {/* Video thumbnail area */}
-                <div className="aspect-video bg-gradient-to-br from-primary/20 via-primary/5 to-accent/10 flex items-center justify-center relative overflow-hidden group">
-                  {/* Animated background mesh */}
-                  <motion.div
-                    animate={{ 
-                      background: [
-                        "linear-gradient(45deg, rgba(26, 53, 94, 0.1), rgba(178, 30, 68, 0.05))",
-                        "linear-gradient(45deg, rgba(26, 53, 94, 0.15), rgba(178, 30, 68, 0.1))",
-                        "linear-gradient(45deg, rgba(26, 53, 94, 0.1), rgba(178, 30, 68, 0.05))"
-                      ]
-                    }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                    className="absolute inset-0"
-                  />
-                  
-                  {/* Play button with enhanced design */}
-                  <motion.button
-                    whileHover={{ scale: 1.2, rotate: 10 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="relative z-10 w-28 h-28 bg-gradient-to-br from-accent to-accent/80 rounded-full flex items-center justify-center transition-all"
-                    data-testid="button-play-video"
-                  >
-                    {/* Pulse ring effect */}
-                    <motion.div
-                      animate={{ scale: [1, 1.2], opacity: [1, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                      className="absolute inset-0 rounded-full bg-accent opacity-30"
-                    />
-                    <Play className="w-12 h-12 text-white ml-1 relative z-10" fill="white" />
-                  </motion.button>
-                </div>
-                
-                {/* Content area */}
-                <div className="p-6 space-y-3 bg-gradient-to-b from-transparent to-primary/5">
-                  <p className="font-heading font-bold text-lg leading-tight text-foreground">
-                    Unlock <span className="text-gradient-gold">$150K+</span> in Business Credit
-                  </p>
-                  <motion.div
-                    className="flex items-center gap-2 cursor-pointer"
-                    whileHover={{ x: 4 }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    <motion.div
-                      animate={{ x: [0, 3, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                      className="text-sm text-accent font-bold flex items-center gap-2"
-                    >
-                      <Play className="w-4 h-4" /> WATCH STRATEGY
-                    </motion.div>
-                  </motion.div>
-                </div>
+              {/* Content area */}
+              <div className="p-6">
+                <p className="font-heading font-bold text-lg text-foreground">
+                  Unlock <span className="text-gradient-gold">$150K+</span> in Business Credit
+                </p>
+                <p className="text-sm text-accent font-semibold mt-2 flex items-center gap-2">
+                  <Play className="w-3 h-3" /> WATCH VIDEO
+                </p>
               </div>
             </motion.div>
 
